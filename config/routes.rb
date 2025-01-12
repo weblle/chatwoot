@@ -328,6 +328,7 @@ Rails.application.routes.draw do
             collection do
               get :agent
               get :team
+              get :inbox
             end
           end
           resources :reports, only: [:index] do
@@ -460,8 +461,8 @@ Rails.application.routes.draw do
 
   # ----------------------------------------------------------------------
   # Routes for external service verifications
-  get 'apple-app-site-association' => 'apple_app#site_association'
   get '.well-known/assetlinks.json' => 'android_app#assetlinks'
+  get '.well-known/apple-app-site-association' => 'apple_app#site_association'
   get '.well-known/microsoft-identity-association.json' => 'microsoft#identity_association'
 
   # ----------------------------------------------------------------------

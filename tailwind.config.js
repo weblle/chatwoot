@@ -32,6 +32,7 @@ const tailwindConfig = {
     './app/javascript/dashboard/components-next/**/*.vue',
     './app/javascript/dashboard/helper/**/*.js',
     './app/javascript/dashboard/components-next/**/*.js',
+    './app/javascript/dashboard/routes/dashboard/**/**/*.js',
     './app/views/**/*.html.erb',
   ],
   theme: {
@@ -42,15 +43,19 @@ const tailwindConfig = {
         interDisplay: ['Inter Display', ...defaultSansFonts],
       },
       typography: {
-        email: {
+        bubble: {
           css: {
-            color: 'rgb(var(--slate-11))',
+            color: 'rgb(var(--slate-12))',
             lineHeight: '1.6',
             fontSize: '14px',
             '*': {
               '&:first-child': {
                 marginTop: '0',
               },
+            },
+
+            'br + br': {
+              display: 'none',
             },
 
             strong: {
@@ -92,29 +97,40 @@ const tailwindConfig = {
               marginBottom: '1.5em',
             },
             a: {
-              color: 'rgb(var(--text-blue))',
+              color: 'rgb(var(--slate-12))',
               textDecoration: 'underline',
             },
+            ul: {
+              paddingInlineStart: '0.625em',
+            },
+            ol: {
+              paddingInlineStart: '0.625em',
+            },
             'ul li': {
-              margin: '0 0 0.5em 1.5em',
+              margin: '0 0 0.5em 1em',
               listStyleType: 'disc',
             },
             'ol li': {
-              margin: '0 0 0.5em 1.5em',
+              margin: '0 0 0.5em 1em',
               listStyleType: 'decimal',
             },
             blockquote: {
-              fontStyle: 'italic',
               color: 'rgb(var(--slate-11))',
-              borderLeft: `4px solid rgb(var(--border-strong))`,
+              borderLeft: `4px solid rgb(var(--black-alpha-1))`,
               paddingLeft: '1em',
             },
             code: {
               backgroundColor: 'rgb(var(--alpha-3))',
-              color: 'rgb(var(--solid-amber))',
+              color: 'rgb(var(--slate-11))',
               padding: '0.2em 0.4em',
               borderRadius: '4px',
               fontSize: '0.95em',
+              '&::before': {
+                content: `none`,
+              },
+              '&::after': {
+                content: `none`,
+              },
             },
             pre: {
               backgroundColor: 'rgb(var(--alpha-3))',
@@ -129,20 +145,22 @@ const tailwindConfig = {
             th: {
               padding: '0.75em',
               color: 'rgb(var(--slate-12))',
-              borderBottom: `1px solid rgb(var(--border-strong))`,
+              border: `none`,
               textAlign: 'left',
               fontWeight: '600',
             },
             tr: {
-              borderBottom: `1px solid rgb(var(--border-strong))`,
+              border: `none`,
             },
             td: {
               padding: '0.75em',
-              borderBottom: `1px solid rgb(var(--border-strong))`,
+              border: `none`,
             },
             img: {
               maxWidth: '100%',
               height: 'auto',
+              marginTop: 'unset',
+              marginBottom: 'unset',
             },
           },
         },
@@ -220,7 +238,14 @@ const tailwindConfig = {
     iconsPlugin({
       collections: {
         woot: { icons },
-        ...getIconCollections(['lucide', 'logos', 'ri', 'ph', 'teenyicons']),
+        ...getIconCollections([
+          'lucide',
+          'logos',
+          'ri',
+          'ph',
+          'material-symbols',
+          'teenyicons',
+        ]),
       },
     }),
   ],

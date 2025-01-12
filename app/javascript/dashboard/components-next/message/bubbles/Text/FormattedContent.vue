@@ -26,6 +26,6 @@ const formattedContent = computed(() => {
 <template>
   <span
     v-dompurify-html="formattedContent"
-    class="[&>p:last-child]:mb-0 [&>ul]:list-inside"
+    class="prose prose-bubble break-words"
   />
 </template>
